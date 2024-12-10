@@ -85,7 +85,6 @@ pypiwin32==223
 python-dateutil==2.9.0.post0
 pyttsx3==2.98
 pytz==2024.2
-pywin32==307
 PyYAML==6.0.2
 react==4.3.0
 regex==2024.11.6
