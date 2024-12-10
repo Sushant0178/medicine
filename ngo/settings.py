@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -6,9 +7,9 @@ SECRET_KEY = 'u_ef61bu5c8_%pmh5j@a)*8u4yil4vgu8z=cyn%+mb#5#6zdq0'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app', '.now.sh']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app', '.now.sh']
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'home.apps.HomeConfig',  # Assuming this is your custom app
@@ -50,12 +51,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ngo.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(default='postgres://localhost:5432/yourdb')
 }
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -65,8 +71,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Path to your static directory
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')  # This will be where static files are collected during the build process
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')  # This will be where static files are collected during the build process
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -90,7 +97,7 @@ USE_L10N = True
 USE_TZ = False
 DATE_FORMAT = 'Y-m-d'
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
